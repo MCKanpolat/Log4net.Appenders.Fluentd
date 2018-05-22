@@ -63,9 +63,11 @@ namespace Log4net.Appenders.Fluentd
 
         protected override void Append(LoggingEvent loggingEvent)
         {
+            var renderedMessage = RenderLoggingEvent(loggingEvent);
+
             var record = new Dictionary<string, object> {
                 { "level", loggingEvent.Level.Name },
-                { "message", loggingEvent.RenderedMessage },
+                { "message", renderedMessage },
                 { "logger_name", loggingEvent.LoggerName }
             };
 
