@@ -69,7 +69,7 @@ namespace Log4net.Appenders.Fluentd
                 { "logger_name", loggingEvent.LoggerName }
             };
 
-            if (EmitStackTraceWhenAvailable && !string.IsNullOrWhiteSpace(loggingEvent.ExceptionObject.StackTrace))
+            if (EmitStackTraceWhenAvailable && !string.IsNullOrWhiteSpace(loggingEvent.ExceptionObject?.StackTrace))
             {
                 var transcodedFrames = new List<Dictionary<string, object>>();
                 var stackTrace = new StackTrace(true);
