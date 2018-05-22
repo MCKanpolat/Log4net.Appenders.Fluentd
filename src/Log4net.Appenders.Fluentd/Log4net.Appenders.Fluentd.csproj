@@ -2,9 +2,9 @@
 
   <PropertyGroup>
     <TargetFramework>netstandard2.0</TargetFramework>
-    <AssemblyVersion>1.0.1.0</AssemblyVersion>
-    <FileVersion>1.0.1.0</FileVersion>
-    <Version>1.0.1</Version>
+    <AssemblyVersion>1.0.2.0</AssemblyVersion>
+    <FileVersion>1.0.2.0</FileVersion>
+    <Version>1.0.2</Version>
     <Authors>MCKanpolat</Authors>
     <Description>Fluentd log4net appender</Description>
     <PackageProjectUrl>https://github.com/MCKanpolat/Log4net.Appenders.Fluentd</PackageProjectUrl>
@@ -15,7 +15,6 @@
 
   <ItemGroup>
     <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="MessagePack" Version="1.7.3.4" />
     <PackageReference Include="MsgPack.Cli" Version="0.9.2" />
   </ItemGroup>
 
