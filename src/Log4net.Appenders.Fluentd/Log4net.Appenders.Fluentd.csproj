@@ -22,7 +22,7 @@
     <Reference Include="System.Core" />
 
     <PackageReference Include="log4net" Version="2.0.8" />
-    <PackageReference Include="MsgPack.Cli" Version="0.9.2" />
+    <PackageReference Include="MsgPack.Cli" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">

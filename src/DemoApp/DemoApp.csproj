@@ -6,6 +6,10 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <PackageReference Include="MsgPack.Cli" Version="1.0.1" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="..\Log4net.Appenders.Fluentd\Log4net.Appenders.Fluentd.csproj" />
   </ItemGroup>
 
