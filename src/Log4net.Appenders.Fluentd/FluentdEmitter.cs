@@ -19,10 +19,16 @@ namespace Log4net.Appenders.Fluentd
 
         public void Emit(DateTime timestamp, string tag, IDictionary<string, object> data)
         {
-            long unixTimestamp = timestamp.ToUniversalTime().Subtract(_unixEpoch).Ticks / 10000000;
+            ulong unixTimestamp = Convert.ToUInt64(Math.Floor((decimal)timestamp.ToUniversalTime().Subtract(_unixEpoch).Ticks / (decimal)10000000));
+
+            ulong extendedTime = (((ulong)unixTimestamp & 0x00000000FFFFFFFF) << 32) | (((ulong)timestamp.Millisecond * 1000000) & 0x00000000FFFFFFFF);
+            extendedTime = (extendedTime & 0x00000000FFFFFFFF) << 32 | (extendedTime & 0xFFFFFFFF00000000) >> 32;
+            extendedTime = (extendedTime & 0x0000FFFF0000FFFF) << 16 | (extendedTime & 0xFFFF0000FFFF0000) >> 16;
+            extendedTime = (extendedTime & 0x00FF00FF00FF00FF) << 8 |  (extendedTime & 0xFF00FF00FF00FF00) >> 8;
+
             _packer.PackArrayHeader(3);
             _packer.PackString(tag, Encoding.UTF8);
-            _packer.Pack((ulong)unixTimestamp);
+            _packer.PackExtendedTypeValue(0,BitConverter.GetBytes(extendedTime));
             _packer.Pack(data, _serializationContext);
             _destination.Flush();
         }
@@ -31,10 +37,10 @@ namespace Log4net.Appenders.Fluentd
         public FluentdEmitter(Stream stream)
         {
             _destination = stream;
-            _packer = Packer.Create(_destination);
+            _packer = Packer.Create(_destination, PackerCompatibilityOptions.None);
             var embeddedContext = new SerializationContext(_packer.CompatibilityOptions);
             embeddedContext.Serializers.Register(new OrdinaryDictionarySerializer(embeddedContext, null));
-            _serializationContext = new SerializationContext(PackerCompatibilityOptions.PackBinaryAsRaw);
+            _serializationContext = new SerializationContext(PackerCompatibilityOptions.None);
             _serializationContext.Serializers.Register(new OrdinaryDictionarySerializer(_serializationContext, embeddedContext));
         }
 
