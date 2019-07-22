@@ -1,9 +1,9 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <AssemblyVersion>1.0.4.0</AssemblyVersion>
-    <FileVersion>1.0.4.0</FileVersion>
-    <Version>1.0.4</Version>
+    <AssemblyVersion>1.0.5.0</AssemblyVersion>
+    <FileVersion>1.0.5.0</FileVersion>
+    <Version>1.0.5</Version>
     <Authors>MCKanpolat</Authors>
     <Description>Fluentd log4net appender</Description>
     <PackageProjectUrl>https://github.com/MCKanpolat/Log4net.Appenders.Fluentd</PackageProjectUrl>
@@ -11,6 +11,8 @@
     <PackageTags>log4net fluentd appender</PackageTags>
     <PackageReleaseNotes />
     <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
+    <Copyright>MCKanpolat</Copyright>
+    <PackageLicenseExpression>MIT</PackageLicenseExpression>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
