@@ -99,7 +99,7 @@ namespace Log4net.Appenders.Fluentd
                     if (val == null)
                         continue;
 
-                    record[key] = SerializePropertyValue(key, val);
+                    record.Add(key, SerializePropertyValue(key, val));
                 }
             }
 
