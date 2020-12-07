@@ -1,0 +1,42 @@
+name: Auto Release
+
+on:
+  push:
+    branches: [ master ]
+
+jobs:
+  build:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v2
+    - name: Setup .NET Core
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: 3.1.301
+    - name: Increment Version
+      uses: MCKanpolat/auto-semver-action@1.0.7
+      id: vers
+      with:
+        releaseType: patch 
+        incrementPerCommit: false
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Install dependencies
+      run: dotnet restore
+    - name: Build
+      run: dotnet build --configuration Release --no-restore
+    - name: Pack
+      run: dotnet pack ./src/Log4net.Appenders.Fluentd/Log4net.Appenders.Fluentd.csproj --no-build --output out -p:PackageVersion=${{ steps.vers.outputs.version }}
+    - name: Create Github Release
+      id: create_release
+      uses: actions/create-release@v1
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      with:
+        tag_name: ${{ steps.vers.outputs.version }}
+        release_name: Release ${{ steps.vers.outputs.version }}
+        body: |
+          Auto Release ${{ steps.vers.outputs.version }}
+        draft: false
+        prerelease: false
