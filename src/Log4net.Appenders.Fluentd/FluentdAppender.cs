@@ -96,10 +96,10 @@ namespace Log4net.Appenders.Fluentd
                 foreach (var key in loggingEvent.Properties.GetKeys())
                 {
                     var val = loggingEvent.Properties[key];
-                    if (val != null)
+                    if (val == null)
                         continue;
 
-                    record[key] = SerializePropertyValue(key, val);
+                    record.Add(key, SerializePropertyValue(key, val));
                 }
             }
 
