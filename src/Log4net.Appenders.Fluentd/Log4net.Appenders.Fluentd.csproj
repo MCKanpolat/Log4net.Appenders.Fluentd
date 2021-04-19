@@ -4,15 +4,15 @@
     <AssemblyVersion>1.0.6.0</AssemblyVersion>
     <FileVersion>1.0.6.0</FileVersion>
     <Version>1.0.6</Version>
-    <Authors>MCKanpolat</Authors>
+    <Authors>MCKanpolat, Damstrajk</Authors>
     <Description>Fluentd log4net appender</Description>
-    <PackageProjectUrl>https://github.com/MCKanpolat/Log4net.Appenders.Fluentd</PackageProjectUrl>
-    <RepositoryUrl>https://github.com/MCKanpolat/Log4net.Appenders.Fluentd</RepositoryUrl>
+    <PackageProjectUrl>https://github.com/damstrajk/Log4net.Appenders.Fluentd</PackageProjectUrl>
+    <RepositoryUrl>https://github.com/damstrajk/Log4net.Appenders.Fluentd</RepositoryUrl>
     <PackageTags>log4net fluentd appender</PackageTags>
     <PackageReleaseNotes />
-    <TargetFrameworks>net40;net45;netstandard2.0</TargetFrameworks>
     <Copyright>MCKanpolat</Copyright>
     <PackageLicenseExpression>MIT</PackageLicenseExpression>
+    <TargetFramework>netstandard2.0</TargetFramework>
   </PropertyGroup>
 
   <PropertyGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
@@ -22,13 +22,14 @@
   <ItemGroup Condition=" '$(TargetFramework)' != 'netstandard2.0' ">
     <Reference Include="System" />
     <Reference Include="System.Core" />
-
-    <PackageReference Include="log4net" Version="2.0.10" />
     <PackageReference Include="MsgPack.Cli" Version="1.0.1" />
   </ItemGroup>
 
   <ItemGroup Condition=" '$(TargetFramework)' == 'netstandard2.0' ">
-    <PackageReference Include="log4net" Version="2.0.10" />
     <PackageReference Include="MsgPack.Cli" Version="0.9.2" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="log4net" Version="2.0.12" />
   </ItemGroup>
 </Project>
