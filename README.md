@@ -5,6 +5,8 @@ Fluentd appender for Log4net.
 ## Installation
 
     PM> Install-Package Log4net.Appenders.Fluentd
+    or
+    > dotnet add package Log4net.Appenders.Fluentd
 
 ##  Configuration
 
