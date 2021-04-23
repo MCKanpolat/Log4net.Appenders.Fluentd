@@ -24,10 +24,8 @@ jobs:
         github_token: ${{ secrets.GITHUB_TOKEN }}
     - name: Install dependencies
       run: dotnet restore
-    - name: Build
-      run: dotnet build --configuration Release --no-restore
     - name: Pack
-      run: dotnet pack ./src/Log4net.Appenders.Fluentd/Log4net.Appenders.Fluentd.csproj --no-build --output out -p:PackageVersion=${{ steps.vers.outputs.version }}
+      run: dotnet pack ./src/Log4net.Appenders.Fluentd/Log4net.Appenders.Fluentd.csproj --configuration Release --no-restore --output out -p:PackageVersion=${{ steps.vers.outputs.version }}
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
