@@ -27,7 +27,7 @@ jobs:
     - name: Pack
       run: dotnet pack ./src/Log4net.Appenders.Fluentd/Log4net.Appenders.Fluentd.csproj --configuration Release --no-restore --output out -p:PackageVersion=${{ steps.vers.outputs.version }}
     - name: Push to Nuget.org
-      run: dotnet nuget push ./out/*.nupkg --source https://api.nuget.org/v3/index.json --api-key ${{secrets.NUGETORG_TOKEN}} --skip-duplicate
+      run: dotnet nuget push **/*.nupkg -s https://api.nuget.org/v3/index.json -k ${{secrets.NUGETORG_TOKEN}} --skip-duplicate
     - name: Create Github Release
       id: create_release
       uses: actions/create-release@v1
